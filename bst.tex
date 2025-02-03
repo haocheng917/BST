@@ -691,6 +691,34 @@ Type successor(Type val) {
         \end{align}
     \end{frame}
 
+    \subsection{例题}
+    
+    \begin{frame}
+        \frametitle{\href{https://www.luogu.com.cn/problem/P1110}{P1110 [ZJOI2007] 报表统计}}
+        \framesubtitle{\textcolor[RGB]{52, 152, 219}{提高+/省选−}}        
+        在最开始的时候，有一个长度为 $n$ 的整数序列 $a$，并且有以下三种操作：
+        
+        \begin{enumerate}
+            \item $\operatorname{INSERT} i k$：在原数列的第 $i$ 个元素后面添加一个新元素 $k$；如果原数列的第 $i$ 个元素已经添加了若干元素，则添加在这些元素的最后（见样例说明）。
+            \item $\operatorname{MIN\_GAP}$：查询相邻两个元素的之间差值（绝对值）的最小值。
+            \item $\operatorname{MIN\_SORT\_GAP}$：查询所有元素中最接近的两个元素的差值（绝对值）。
+        \end{enumerate}
+        数据规模与约定：
+
+        对于全部的测试点，保证 $2 \le n, m \le 5\times10^5$，$1 \leq i \leq n$，$0 \leq a_i, k \leq 5 \times 10^8$。
+    \end{frame}
+
+    \begin{frame}
+        \frametitle{\href{https://www.luogu.com.cn/problem/P1110}{P1110 [ZJOI2007] 报表统计}}
+        \framesubtitle{\textcolor[RGB]{52, 152, 219}{提高+/省选−}}   
+
+        两个平衡树，其中一个是数列中所有数的集合，另一个是数列中相邻数的差的集合。
+
+        操作2可以直接查询第二个集合中的最小值
+
+        操作3需要再每次插入时维护，每插入一个元素，查询它与它的前驱的绝对值和它和后继的绝对值，然后更新minsortgap。
+    \end{frame}
+
     \subsection{区间操作}
 
     \begin{frame}
