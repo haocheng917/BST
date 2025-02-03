@@ -1,6 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 mt19937 rnd;
+int read() {
+	int x=0, f=1; char ch = getchar();
+	while (ch > '9' || ch < '0') { 
+        if (ch == '-') f = -1;
+        ch = getchar();
+    }
+	while (ch <= '9' && ch >= '0') {
+        x = (x << 3) + (x << 1) + (ch ^ 48);
+        ch = getchar();
+    }
+	return x * f;
+}
 struct Node {
     int val, priority, size = 1, cnt = 1;
     Node *leftSon = nullptr;
@@ -62,12 +74,12 @@ void erase(Node *&rt, int x) {
     else { delete m; m = nullptr; }
     rt = merge(l, merge(m, r));
 }
-int getMax(Node *&rt) {
-    if (rt->rightSon) return getMax(rt->rightSon);
+int getMax(Node *rt) {
+    while (rt->rightSon) rt = rt->rightSon;
     return rt->val;
 }
-int getMin(Node *&rt) {
-    if (rt->leftSon) return getMin(rt->leftSon);
+int getMin(Node *rt) {
+    while (rt->leftSon) rt = rt->leftSon;
     return rt->val;
 }
 int pre(int k) {
@@ -90,24 +102,22 @@ int suc(int k) {
     rt1 = merge(l, merge(m, r));
     return res;
 }
+char s[20];
 int main() {
-//    freopen("D:\\BST\\SomeProblems'TasksData\\P1110_2.in", "r", stdin);
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-    cin >> n >> m;
+    n = read(), m = read();
     for (int i = 1; i <= n; i++) {
-        cin >> a[i];
+        a[i] = read();
         Map[i] = a[i];
         insert(rt1, a[i]);
         if (i - 1) insert(rt0, abs(a[i] - a[i - 1]));
         min_sort_gap = min(min_sort_gap, min(a[i] - pre(a[i]), suc(a[i]) - a[i]));
     }
     while (m--) {
-        string op;
-        cin >> op;
-        if (op == "INSERT") {
+        scanf("%s", s);
+        if (s[0] == 'I') {
             int i, k;
-            cin >> i >> k;
+            i = read();
+            k = read();
             if (i != n) {
                 erase(rt0, abs(Map[i] - a[i + 1]));
                 insert(rt0, abs(a[i + 1] - k));
@@ -115,9 +125,9 @@ int main() {
             insert(rt0, abs(Map[i] - k));
             insert(rt1, Map[i] = k);
             min_sort_gap = min(min_sort_gap, min(k - pre(k), suc(k) - k));
-        } else if (op == "MIN_GAP") {
+        } else if (s[4] == 'G') {
             cout << getMin(rt0) << '\n';
-        } else if (op == "MIN_SORT_GAP") {
+        } else {
             cout << min_sort_gap << '\n';
         }
     }
