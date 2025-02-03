@@ -1,0 +1,11 @@
+digraph tree {
+    5->4->3->2->1
+    5->n1[style=invis]
+    4->n2[style=invis]
+    3->n3[style=invis]
+    2->n4[style=invis]
+    n1[style=invis]
+    n2[style=invis]
+    n3[style=invis]
+    n4[style=invis]
+}

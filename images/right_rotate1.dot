@@ -1,0 +1,9 @@
+digraph tree {
+    A[shape=box]
+    B[shape=box]
+	x->f
+	f->y
+    y[shape=box]
+	x->A
+	x->B
+}

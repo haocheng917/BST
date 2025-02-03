@@ -1,0 +1,20 @@
+digraph tree {
+    n1[label="val:5\npriority:1"]
+    n2[label="val:3\npriority:2"]
+    n8[style=invis]
+    n9[style=invis]
+    n3[label="val:7\npriority:3"]
+    n4[label="val:6\npriority:4"]
+    n5[label="val:4\npriority:6"]
+    n6[label="val:6\npriority:7"]
+    n10[style=invis]
+    n7[label="val:8\npriority:8"]
+    n1->n2
+    n1->n3[style=invis]
+    n1->{n8 n9}[style=invis]
+    n2->{n4 n5}
+    n3->n10[style=invis]
+    n3->n6[style=invis]
+    n3->n7
+    n1->n6
+}

@@ -1,0 +1,7 @@
+digraph tree {
+    f->{A[shape=box] B[shape=box]}
+    n1[style=invis]
+    g->{C[shape=box] D[shape=box]}
+    x->{f g}
+    x->n1[style=invis]
+}

@@ -1,0 +1,23 @@
+\frametitle{代码}
+        \begin{lstlisting}[language=c++]
+void print(Node *cur = root) {
+    if (!cur) return;
+    cur->pushDown();
+    print(cur->leftSon);
+    if (cur->val > 0 && cur->val <= n)
+        cout << cur->val << ' ';
+    print(cur->rightSon);
+}
+int main() {
+    scanf("%d%d", &n, &m);
+    root = build(0, n + 1);
+    while (m--) {
+        scanf("%d%d", &p, &q);
+        splay(Kth(p));
+        splay2(Kth(q + 2));
+        root->rightSon->leftSon->addTag();
+    }
+    print();
+    return 0;
+}
+        \end{lstlisting}

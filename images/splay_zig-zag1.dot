@@ -1,0 +1,5 @@
+digraph tree {
+    g->{x D[shape=box]}
+    f->{A[shape=box] B[shape=box]}
+    x->{f C[shape=box]}
+}
